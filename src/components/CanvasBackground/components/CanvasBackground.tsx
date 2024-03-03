@@ -16,16 +16,11 @@ export const CanvasBackground = () => {
     if (!ctx) return;
 
     const resizeCanvas = throttle(() => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = window.outerWidth;
+      canvas.height = window.outerHeight;
     }, 50);
 
-    window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-    };
   }, []);
 
   useLayoutEffect(() => {

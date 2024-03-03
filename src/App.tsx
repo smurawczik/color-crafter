@@ -1,5 +1,8 @@
 import "./App.css";
 import { useColorScheme } from "./components/ColorScheme/hooks/useColorScheme";
+import { calculateOppositeColor } from "./helpers/colors";
+
+calculateOppositeColor;
 
 function App() {
   useColorScheme();
