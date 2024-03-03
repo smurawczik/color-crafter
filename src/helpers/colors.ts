@@ -146,19 +146,84 @@ function generateColorPalette(
   return palette;
 }
 
-// Example usage
-const originalColor = "#FF0000"; // Red
-console.log("Original color:", originalColor);
-console.log("Complementary color:", calculateComplementaryColor(originalColor));
-console.log(
-  "Split complementary colors:",
-  calculateSplitComplementaryColors(originalColor)
-);
-console.log("Analogous colors:", calculateAnalogousColors(originalColor));
-console.log("Triadic colors:", calculateTriadicColors(originalColor));
+// Generate a scale of colors between two given colors
+function generateColorScale(
+  startColor: string,
+  endColor: string,
+  numberOfSteps: number
+): string[] {
+  const startRgb = hexToRgb(startColor);
+  const endRgb = hexToRgb(endColor);
+
+  if (!startRgb || !endRgb) {
+    throw new Error("Invalid color format");
+  }
+
+  const scale = [];
+
+  for (let i = 0; i <= numberOfSteps; i++) {
+    const ratio = i / numberOfSteps;
+    const newRgb = {
+      r: Math.round(startRgb.r + (endRgb.r - startRgb.r) * ratio),
+      g: Math.round(startRgb.g + (endRgb.g - startRgb.g) * ratio),
+      b: Math.round(startRgb.b + (endRgb.b - startRgb.b) * ratio),
+    };
+    scale.push(rgbToHex(newRgb));
+  }
+
+  return scale;
+}
 
 // Example usage
-const initialColor = "#FF0000"; // Red
-const numberOfColors = 5;
-const colorPalette = generateColorPalette(initialColor, numberOfColors);
-console.log("Color Palette:", colorPalette);
+const startColor = "#FF0000"; // Red
+const endColor = "#00FF00"; // Green
+const colorScale = generateColorScale(startColor, endColor, 50);
+colorScale.forEach((color) => {
+  // write colors to the console and style the text color with its own color
+  console.log.bind(
+    console,
+    `%c ${color}`,
+    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
+  )();
+});
+
+// Example usage
+const originalColor = "#FF0000";
+console.log(
+  `%cOriginal color: ${originalColor}`,
+  `color: ${originalColor}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
+);
+console.log(
+  `%cComplementary color: ${calculateComplementaryColor(originalColor)}`,
+  `color: ${calculateComplementaryColor(
+    originalColor
+  )}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
+);
+calculateSplitComplementaryColors(originalColor).forEach((color) => {
+  console.log(
+    `%cSplit complementary color: ${color}`,
+    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
+  );
+});
+
+calculateAnalogousColors(originalColor).forEach((color) => {
+  console.log(
+    `%cAnalogous color: ${color}`,
+    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
+  );
+});
+
+calculateTriadicColors(originalColor).forEach((color) => {
+  console.log(
+    `%cTriadic color: ${color}`,
+    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
+  );
+});
+const colorPalette = generateColorPalette(originalColor, 5);
+
+colorPalette.forEach((color) => {
+  console.log(
+    `%cColor Palette: ${color}`,
+    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
+  );
+});
