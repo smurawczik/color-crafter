@@ -1,10 +1,13 @@
-import { numberBetween } from "./../../../helpers/number.between";
+import { numberBetween } from "../../../helpers/number.between";
 import { PixelPosition } from "../types";
 
 export class CanvasBackgroundPainter {
   private ctx: CanvasRenderingContext2D | null = null;
-  private animation: number = -1;
+  private animation: NodeJS.Timeout | null = null;
   private drawnPixels: PixelPosition[] = [];
+  private size = 8;
+
+  private animationSpeed = 150;
 
   constructor(
     private canvasElement: HTMLCanvasElement,
@@ -37,13 +40,13 @@ export class CanvasBackgroundPainter {
 
         this.drawnPixels.splice(randomIndex, 1);
       }
-    }, 200);
+    }, this.animationSpeed);
   }
 
   clearPixel(x: number, y: number) {
     if (!this.ctx) return;
 
-    this.ctx.clearRect(x, y, 5, 5);
+    this.ctx.clearRect(x, y, this.size, this.size);
   }
 
   generatePixelPositions(
@@ -51,8 +54,8 @@ export class CanvasBackgroundPainter {
     canvasHeight: number
   ): PixelPosition[] {
     const positions: PixelPosition[] = [];
-    for (let x = 0; x < canvasWidth; x += 5) {
-      for (let y = 0; y < canvasHeight; y += 5) {
+    for (let x = 0; x < canvasWidth; x += this.size) {
+      for (let y = 0; y < canvasHeight; y += this.size) {
         positions.push({ x, y });
       }
     }
@@ -74,14 +77,14 @@ export class CanvasBackgroundPainter {
     if (!this.ctx) return;
 
     this.ctx.fillStyle = color;
-    this.ctx.fillRect(x, y, 5, 5);
+    this.ctx.fillRect(x, y, this.size, this.size);
   }
 
   // to animate painting all pixels randomly on the canvas
   animateRandomPaintingAllPixels(pixelPositions: PixelPosition[]) {
     let remainingPixels = pixelPositions.length;
     this.animation = setInterval(() => {
-      if (remainingPixels <= 0) {
+      if (remainingPixels <= 0 && this.animation) {
         clearInterval(this.animation);
         return;
       }
@@ -95,11 +98,11 @@ export class CanvasBackgroundPainter {
       remainingPixels--;
 
       this.drawnPixels.push(pixel);
-    }, 150);
+    }, this.animationSpeed);
   }
 
   // stop the animation
   stopAnimation() {
-    clearInterval(this.animation);
+    if (this.animation) clearInterval(this.animation);
   }
 }

@@ -1,6 +1,6 @@
 import { throttle } from "lodash";
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { CanvasBackgroundPainter } from "../helpers/canvas.background.painter.helper";
+import { CanvasBackgroundPainter } from "../helpers/CanvasBackgroundPainter";
 import { useColorPreference } from "../../ColorScheme/hooks/useColorPreference";
 
 export const CanvasBackground = () => {

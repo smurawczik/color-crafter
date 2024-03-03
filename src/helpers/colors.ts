@@ -1,3 +1,6 @@
+import { RGBColor } from "@/types/color";
+import { calculateComplementaryColor } from "./complementaryColor";
+
 export function calculateOppositeColor(color: string): string {
   // Convert hex color to RGB
   const hexToRgb = (hex: string): number[] =>
@@ -20,46 +23,52 @@ export function calculateOppositeColor(color: string): string {
 
   return oppositeHexColor;
 }
-interface RGBColor {
-  r: number;
-  g: number;
-  b: number;
-}
 
 // Convert hexadecimal color to RGB
-function hexToRgb(hex: string): RGBColor {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
+export function hexToRgb(hex: string): RGBColor | null {
+  // Remove '#' if present
+  hex = hex.replace(/^#/, "");
+
+  // Regex pattern to match both 3 and 6 characters hex strings
+  const hexPattern = /^#?([a-f\d]{3}|[a-f\d]{6})$/i;
+
+  // Match the hex pattern
+  const result = hexPattern.exec(hex);
+
+  if (!result) {
+    return null; // Invalid hex format
+  }
+
+  // Extract the red, green, and blue components
+  let r: number, g: number, b: number;
+  if (result[1].length === 3) {
+    r = parseInt(result[1][0] + result[1][0], 16);
+    g = parseInt(result[1][1] + result[1][1], 16);
+    b = parseInt(result[1][2] + result[1][2], 16);
+  } else {
+    r = parseInt(result[1].substring(0, 2), 16);
+    g = parseInt(result[1].substring(2, 4), 16);
+    b = parseInt(result[1].substring(4, 6), 16);
+  }
+
+  return { r, g, b };
 }
 
 // Convert RGB to hexadecimal color
-function rgbToHex(rgb: RGBColor): string {
+export function rgbToHex(rgb: RGBColor): string {
   return (
     "#" +
     ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1)
   );
 }
 
-// Calculate complementary color
-function calculateComplementaryColor(color: string): string {
-  const rgb = hexToRgb(color);
-  const complementaryRgb = {
-    r: 255 - rgb.r,
-    g: 255 - rgb.g,
-    b: 255 - rgb.b,
-  };
-  return rgbToHex(complementaryRgb);
-}
-
 // Calculate split complementary colors
-function calculateSplitComplementaryColors(color: string): string[] {
+export function calculateSplitComplementaryColors(color: string): string[] {
   const rgb = hexToRgb(color);
+  if (!rgb) {
+    return [];
+  }
+
   const complementaryRgb = {
     r: 255 - rgb.r,
     g: 255 - rgb.g,
@@ -79,8 +88,13 @@ function calculateSplitComplementaryColors(color: string): string[] {
 }
 
 // Calculate analogous colors
-function calculateAnalogousColors(color: string): string[] {
+export function calculateAnalogousColors(color: string): string[] {
   const rgb = hexToRgb(color);
+
+  if (!rgb) {
+    return [];
+  }
+
   const analogousColors = [];
   const angle = 30; // Angle between analogous colors in degrees
   for (let i = 1; i <= 3; i++) {
@@ -96,8 +110,13 @@ function calculateAnalogousColors(color: string): string[] {
 }
 
 // Calculate triadic colors
-function calculateTriadicColors(color: string): string[] {
+export function calculateTriadicColors(color: string): string[] {
   const rgb = hexToRgb(color);
+
+  if (!rgb) {
+    return [];
+  }
+
   const triadicColors = [];
   const angles = [120, 240]; // Angles between triadic colors in degrees
   for (const angle of angles) {
@@ -113,7 +132,7 @@ function calculateTriadicColors(color: string): string[] {
 }
 
 // Generate a palette of 4 or 5 colors based on an initial color
-function generateColorPalette(
+export function generateColorPalette(
   initialColor: string,
   numberOfColors: number
 ): string[] {
@@ -147,7 +166,7 @@ function generateColorPalette(
 }
 
 // Generate a scale of colors between two given colors
-function generateColorScale(
+export function generateColorScale(
   startColor: string,
   endColor: string,
   numberOfSteps: number
@@ -173,57 +192,3 @@ function generateColorScale(
 
   return scale;
 }
-
-// Example usage
-const startColor = "#FF0000"; // Red
-const endColor = "#00FF00"; // Green
-const colorScale = generateColorScale(startColor, endColor, 50);
-colorScale.forEach((color) => {
-  // write colors to the console and style the text color with its own color
-  console.log.bind(
-    console,
-    `%c ${color}`,
-    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
-  )();
-});
-
-// Example usage
-const originalColor = "#FF0000";
-console.log(
-  `%cOriginal color: ${originalColor}`,
-  `color: ${originalColor}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
-);
-console.log(
-  `%cComplementary color: ${calculateComplementaryColor(originalColor)}`,
-  `color: ${calculateComplementaryColor(
-    originalColor
-  )}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
-);
-calculateSplitComplementaryColors(originalColor).forEach((color) => {
-  console.log(
-    `%cSplit complementary color: ${color}`,
-    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
-  );
-});
-
-calculateAnalogousColors(originalColor).forEach((color) => {
-  console.log(
-    `%cAnalogous color: ${color}`,
-    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
-  );
-});
-
-calculateTriadicColors(originalColor).forEach((color) => {
-  console.log(
-    `%cTriadic color: ${color}`,
-    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
-  );
-});
-const colorPalette = generateColorPalette(originalColor, 5);
-
-colorPalette.forEach((color) => {
-  console.log(
-    `%cColor Palette: ${color}`,
-    `color: ${color}; font-size: 12px; background-color: rgba(255,255,255,0.15);`
-  );
-});
