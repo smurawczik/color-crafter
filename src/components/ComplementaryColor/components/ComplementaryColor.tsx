@@ -1,4 +1,4 @@
-import { Paragraph } from "@/components/ui/paragraph";
+import { Small } from "@/components/ui/small";
 import { transformToHex } from "@/helpers/color.transformers";
 import { calculateComplementaryColor } from "@/helpers/complementary.color";
 import { getColorType } from "@/helpers/get.color.type";
@@ -34,7 +34,7 @@ export const ComplementaryColor = () => {
             color: useLightText ? "white" : "black",
           }}
         >
-          <Paragraph>Complementary</Paragraph>
+          <Small>Complementary</Small>
         </div>
       </div>
     </div>
