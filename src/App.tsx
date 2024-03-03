@@ -3,6 +3,7 @@ import { ColorInput } from "./components/ColorInput/components/ColorInput";
 import { ColorRepresentation } from "./components/ColorRepresentation/components/ColorRepresentation";
 import { useColorScheme } from "./components/ColorScheme/hooks/useColorScheme";
 import { ComplementaryColor } from "./components/ComplementaryColor/components/ComplementaryColor";
+import { SplitComplementaryColors } from "./components/SplitComplementaryColors";
 import { ThemeSwitch } from "./components/ThemeSwitch";
 import { TypographyH1 } from "./components/ui/typographyH1";
 
@@ -28,8 +29,11 @@ function App() {
         </div>
       </div>
 
-      <div className="flex mx-auto items-center max-w-md">
+      <div className="flex mx-auto max-w-fit gap-4 items-start">
         <ComplementaryColor />
+        <div>
+          <SplitComplementaryColors />
+        </div>
       </div>
     </>
   );

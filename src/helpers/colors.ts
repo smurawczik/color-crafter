@@ -1,31 +1,6 @@
 import { hexToRgb } from "./hex.to.rgb";
 import { rgbToHex } from "./rgb.to.hex";
 
-// Calculate split complementary colors
-export function calculateSplitComplementaryColors(color: string): string[] {
-  const rgb = hexToRgb(color);
-  if (!rgb) {
-    return [];
-  }
-
-  const complementaryRgb = {
-    r: 255 - rgb.r,
-    g: 255 - rgb.g,
-    b: 255 - rgb.b,
-  };
-  const firstSplitRgb = {
-    r: Math.floor((complementaryRgb.r + rgb.r) / 2),
-    g: Math.floor((complementaryRgb.g + rgb.g) / 2),
-    b: Math.floor((complementaryRgb.b + rgb.b) / 2),
-  };
-  const secondSplitRgb = {
-    r: Math.floor((255 + rgb.r) / 2),
-    g: Math.floor((255 + rgb.g) / 2),
-    b: Math.floor((255 + rgb.b) / 2),
-  };
-  return [rgbToHex(firstSplitRgb), rgbToHex(secondSplitRgb)];
-}
-
 // Calculate analogous colors
 export function calculateAnalogousColors(color: string): string[] {
   const rgb = hexToRgb(color);

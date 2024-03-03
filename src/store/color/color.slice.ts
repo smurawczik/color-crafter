@@ -3,7 +3,7 @@ import { ColorSliceState } from "./color.slice.types";
 
 // Define the initial state using that type
 const initialState: ColorSliceState = {
-  input: null,
+  input: "#F0FCCF",
 };
 
 export const colorSlice = createSlice({

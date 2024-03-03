@@ -1,3 +1,4 @@
+import { ColorPill } from "@/components/ColorPill";
 import { Paragraph } from "@/components/ui/paragraph";
 import { isValidColor } from "@/helpers/is.valid.color";
 import { colorSelectors } from "@/store/color/color.slice.selectors";
@@ -14,12 +15,5 @@ export const ColorRepresentation = () => {
     return <Paragraph>Invalid color</Paragraph>;
   }
 
-  return (
-    <div
-      className="w-16 h-10 rounded-sm"
-      style={{
-        backgroundColor: currentColor,
-      }}
-    />
-  );
+  return <ColorPill color={currentColor} />;
 };
