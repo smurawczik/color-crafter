@@ -1,6 +1,7 @@
 import { transformToHex } from "./color.transformers";
-import { hexToRgb, rgbToHex } from "./colors";
 import { getColorType } from "./get.color.type";
+import { hexToRgb } from "./hex.to.rgb";
+import { rgbToHex } from "./rgb.to.hex";
 
 // Calculate complementary color
 export function calculateComplementaryColor(color: string | null): string {

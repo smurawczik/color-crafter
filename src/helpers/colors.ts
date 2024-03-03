@@ -1,42 +1,5 @@
-import { RGBColor } from "@/types/color";
-
-// Convert hexadecimal color to RGB
-export function hexToRgb(hex: string): RGBColor | null {
-  // Remove '#' if present
-  hex = hex.replace(/^#/, "");
-
-  // Regex pattern to match both 3 and 6 characters hex strings
-  const hexPattern = /^#?([a-f\d]{3}|[a-f\d]{6})$/i;
-
-  // Match the hex pattern
-  const result = hexPattern.exec(hex);
-
-  if (!result) {
-    return null; // Invalid hex format
-  }
-
-  // Extract the red, green, and blue components
-  let r: number, g: number, b: number;
-  if (result[1].length === 3) {
-    r = parseInt(result[1][0] + result[1][0], 16);
-    g = parseInt(result[1][1] + result[1][1], 16);
-    b = parseInt(result[1][2] + result[1][2], 16);
-  } else {
-    r = parseInt(result[1].substring(0, 2), 16);
-    g = parseInt(result[1].substring(2, 4), 16);
-    b = parseInt(result[1].substring(4, 6), 16);
-  }
-
-  return { r, g, b };
-}
-
-// Convert RGB to hexadecimal color
-export function rgbToHex(rgb: RGBColor): string {
-  return (
-    "#" +
-    ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1)
-  );
-}
+import { hexToRgb } from "./hex.to.rgb";
+import { rgbToHex } from "./rgb.to.hex";
 
 // Calculate split complementary colors
 export function calculateSplitComplementaryColors(color: string): string[] {
