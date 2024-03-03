@@ -1,5 +1,5 @@
 import { Paragraph } from "@/components/ui/paragraph";
-import { isValidColor } from "@/helpers/isValidColor";
+import { isValidColor } from "@/helpers/is.valid.color";
 import { colorSelectors } from "@/store/color/color.slice.selectors";
 import { useAppSelector } from "@/store/hooks";
 

@@ -1,28 +1,4 @@
 import { RGBColor } from "@/types/color";
-import { calculateComplementaryColor } from "./complementaryColor";
-
-export function calculateOppositeColor(color: string): string {
-  // Convert hex color to RGB
-  const hexToRgb = (hex: string): number[] =>
-    hex.match(/\w\w/g)?.map((s) => parseInt(s, 16)) || [];
-  const rgb = hexToRgb(color.replace(/^#/, ""));
-
-  if (rgb.length !== 3) {
-    throw new Error("Invalid color format");
-  }
-
-  // Calculate the opposite color (complementary color)
-  const oppositeColor = rgb.map((component) => 255 - component);
-
-  // Convert RGB to hex
-  const componentToHex = (component: number): string => {
-    const hex = component.toString(16);
-    return hex.length === 1 ? "0" + hex : hex;
-  };
-  const oppositeHexColor = "#" + oppositeColor.map(componentToHex).join("");
-
-  return oppositeHexColor;
-}
 
 // Convert hexadecimal color to RGB
 export function hexToRgb(hex: string): RGBColor | null {

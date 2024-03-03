@@ -1,14 +1,14 @@
 import { Paragraph } from "@/components/ui/paragraph";
 import { transformToHex } from "@/helpers/color.transformers";
-import { calculateComplementaryColor } from "@/helpers/complementaryColor";
-import { getColorType } from "@/helpers/getColorType";
-import { isValidColor } from "@/helpers/isValidColor";
+import { calculateComplementaryColor } from "@/helpers/complementary.color";
+import { getColorType } from "@/helpers/get.color.type";
+import { isValidColor } from "@/helpers/is.valid.color";
 import { shouldUseWhiteText } from "@/helpers/text.contrast";
 import { colorSelectors } from "@/store/color/color.slice.selectors";
 import { useAppSelector } from "@/store/hooks";
 
 export const ComplementaryColor = () => {
-  const currentColor = useAppSelector(colorSelectors.hex);
+  const currentColor = useAppSelector(colorSelectors.inputColor);
   const complementaryColor = calculateComplementaryColor(currentColor);
 
   if (!isValidColor(currentColor)) {

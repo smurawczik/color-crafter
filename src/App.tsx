@@ -4,9 +4,6 @@ import { ColorRepresentation } from "./components/ColorRepresentation/components
 import { useColorScheme } from "./components/ColorScheme/hooks/useColorScheme";
 import { ComplementaryColor } from "./components/ComplementaryColor/components/ComplementaryColor";
 import { TypographyH1 } from "./components/ui/typographyH1";
-import { calculateOppositeColor } from "./helpers/colors";
-
-calculateOppositeColor;
 
 function App() {
   useColorScheme();
