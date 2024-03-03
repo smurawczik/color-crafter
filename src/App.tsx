@@ -3,6 +3,7 @@ import { ColorInput } from "./components/ColorInput/components/ColorInput";
 import { ColorRepresentation } from "./components/ColorRepresentation/components/ColorRepresentation";
 import { useColorScheme } from "./components/ColorScheme/hooks/useColorScheme";
 import { ComplementaryColor } from "./components/ComplementaryColor/components/ComplementaryColor";
+import { ThemeSwitch } from "./components/ThemeSwitch";
 import { TypographyH1 } from "./components/ui/typographyH1";
 
 function App() {
@@ -10,7 +11,11 @@ function App() {
 
   return (
     <>
-      <div className="text-center my-4">
+      <div className="absolute right-4 top-4">
+        <ThemeSwitch />
+      </div>
+
+      <div className="text-center mb-4">
         <TypographyH1>Color Crafter</TypographyH1>
       </div>
 

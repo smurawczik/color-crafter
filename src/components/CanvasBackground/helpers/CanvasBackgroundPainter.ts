@@ -4,6 +4,7 @@ import { PixelPosition } from "../types";
 export class CanvasBackgroundPainter {
   private ctx: CanvasRenderingContext2D | null = null;
   private animation: NodeJS.Timeout | null = null;
+  private wipeOutAnimation: NodeJS.Timeout | null = null;
   private drawnPixels: PixelPosition[] = [];
   private size = 8;
 
@@ -16,6 +17,12 @@ export class CanvasBackgroundPainter {
     this.ctx = this.canvasElement.getContext("2d");
   }
 
+  destroy() {
+    this.stopAnimations();
+    if (this.ctx)
+      this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+  }
+
   paint() {
     if (!this.ctx) return;
 
@@ -25,7 +32,7 @@ export class CanvasBackgroundPainter {
     );
     this.animateRandomPaintingAllPixels(pixelPositions);
 
-    setTimeout(() => {
+    this.wipeOutAnimation = setTimeout(() => {
       this.startRemovingPixels();
     }, 10000);
   }
@@ -102,7 +109,8 @@ export class CanvasBackgroundPainter {
   }
 
   // stop the animation
-  stopAnimation() {
+  stopAnimations() {
     if (this.animation) clearInterval(this.animation);
+    if (this.wipeOutAnimation) clearTimeout(this.wipeOutAnimation);
   }
 }

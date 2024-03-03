@@ -1,12 +1,12 @@
+import { useAppSelector } from "@/store/hooks";
 import { throttle } from "lodash";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { CanvasBackgroundPainter } from "../helpers/CanvasBackgroundPainter";
-import { useColorPreference } from "../../ColorScheme/hooks/useColorPreference";
 
 export const CanvasBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasBackgroundPainter = useRef<CanvasBackgroundPainter | null>(null);
-  const { colorScheme } = useColorPreference();
+  const themeType = useAppSelector((state) => state.theme.type);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -29,16 +29,17 @@ export const CanvasBackground = () => {
 
     canvasBackgroundPainter.current = new CanvasBackgroundPainter(
       canvas,
-      colorScheme
+      themeType
     );
     canvasBackgroundPainter.current.paint();
 
     return () => {
       if (canvasBackgroundPainter.current) {
-        canvasBackgroundPainter.current.stopAnimation();
+        canvasBackgroundPainter.current.destroy();
+        canvasBackgroundPainter.current = null;
       }
     };
-  }, [colorScheme]);
+  }, [themeType]);
 
   return (
     <canvas

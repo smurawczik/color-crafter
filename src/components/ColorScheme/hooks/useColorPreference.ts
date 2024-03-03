@@ -1,17 +1,15 @@
-import { useMemo, useState } from "react";
+import { useAppDispatch } from "@/store/hooks";
+import { toggleTheme } from "@/store/theme/theme.slice";
 
 export const useColorPreference = () => {
-  const prefersDarkScheme = useMemo(
-    () => window.matchMedia("(prefers-color-scheme: dark)").matches,
-    []
-  );
+  const dispatch = useAppDispatch();
 
-  const [colorScheme, setColorScheme] = useState<"light" | "dark">(
-    prefersDarkScheme ? "dark" : "light"
-  );
+  const toggleThemeColor = () => {
+    document.body.classList.toggle("dark");
+    dispatch(toggleTheme());
+  };
 
   return {
-    colorScheme,
-    setColorScheme,
+    toggleThemeColor,
   };
 };
