@@ -19,7 +19,7 @@ export const SplitComplementaryColors = () => {
       {complementarySplitColors.map((color, index) => {
         return (
           <div className="group mb-2" key={index}>
-            <ColorPill color={color}>
+            <ColorPill color={color} selectable>
               <Small>Split</Small>
             </ColorPill>
           </div>

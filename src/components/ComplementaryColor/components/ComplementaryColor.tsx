@@ -15,7 +15,7 @@ export const ComplementaryColor = () => {
 
   return (
     <div className="flex items-center mt-4 mb-2 group">
-      <ColorPill color={complementaryColor}>
+      <ColorPill color={complementaryColor} selectable>
         <Small>Complementary</Small>
       </ColorPill>
     </div>

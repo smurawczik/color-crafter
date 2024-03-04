@@ -1,9 +1,9 @@
 import "./App.css";
 import { AnalogousColors } from "./components/AnalogousColors";
 import { ColorInput } from "./components/ColorInput/components/ColorInput";
-import { ColorRepresentation } from "./components/ColorRepresentation/components/ColorRepresentation";
 import { useColorScheme } from "./components/ColorScheme/hooks/useColorScheme";
 import { ComplementaryColor } from "./components/ComplementaryColor/components/ComplementaryColor";
+import { SelectedColorActions } from "./components/SelectedColorActions";
 import { SplitComplementaryColors } from "./components/SplitComplementaryColors";
 import { ThemeSwitch } from "./components/ThemeSwitch";
 import { TypographyH1 } from "./components/ui/typographyH1";
@@ -25,9 +25,6 @@ function App() {
         <div className="w-80">
           <ColorInput />
         </div>
-        <div className="shrink">
-          <ColorRepresentation />
-        </div>
       </div>
 
       <div className="flex mx-auto max-w-fit gap-4 items-start">
@@ -39,6 +36,8 @@ function App() {
           <AnalogousColors />
         </div>
       </div>
+
+      <SelectedColorActions />
     </>
   );
 }

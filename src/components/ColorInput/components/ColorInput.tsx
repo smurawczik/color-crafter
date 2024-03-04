@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { setColorHex } from "@/store/color/color.slice";
+import { resetSelectedColors, setColorHex } from "@/store/color/color.slice";
 import { colorSelectors } from "@/store/color/color.slice.selectors";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
@@ -9,11 +9,12 @@ export const ColorInput = () => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setColorHex(e.target.value));
+    dispatch(resetSelectedColors());
   };
 
   return (
     <Input
-      type="text"
+      type="color"
       placeholder="#00FF00"
       value={currentColor}
       onChange={onChange}

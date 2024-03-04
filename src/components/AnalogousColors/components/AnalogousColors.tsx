@@ -13,14 +13,12 @@ export const AnalogousColors = () => {
     return null;
   }
 
-  console.log(analogousColors);
-
   return (
     <div className="flex flex-col items-center mt-4 mb-2">
       {analogousColors.map((color, index) => {
         return (
           <div className="group mb-2" key={index}>
-            <ColorPill color={color}>
+            <ColorPill color={color} selectable>
               <Small>Analogous</Small>
             </ColorPill>
           </div>

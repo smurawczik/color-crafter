@@ -10,6 +10,7 @@ export const ThemeSwitch = () => {
     <Switch
       className="text-xs font-medium leading-8"
       onClick={toggleThemeColor}
+      checked={themeType === "dark"}
     >
       {themeType === "light" ? "Dark" : "Light"} Mode
     </Switch>
