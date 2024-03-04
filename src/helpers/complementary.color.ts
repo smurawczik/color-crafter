@@ -24,6 +24,7 @@ export function calculateComplementaryColor(color: string | null): string {
       g: 255 - rgb.g,
       b: 255 - rgb.b,
     };
+
     return rgbToHex(complementaryRgb);
   } catch (error) {
     return "";

@@ -1,28 +1,6 @@
 import { hexToRgb } from "./hex.to.rgb";
 import { rgbToHex } from "./rgb.to.hex";
 
-// Calculate analogous colors
-export function calculateAnalogousColors(color: string): string[] {
-  const rgb = hexToRgb(color);
-
-  if (!rgb) {
-    return [];
-  }
-
-  const analogousColors = [];
-  const angle = 30; // Angle between analogous colors in degrees
-  for (let i = 1; i <= 3; i++) {
-    const rads = (angle * i * Math.PI) / 180;
-    const newRgb = {
-      r: Math.round(rgb.r + Math.cos(rads) * 50),
-      g: Math.round(rgb.g + Math.cos(rads) * 50),
-      b: Math.round(rgb.b + Math.cos(rads) * 50),
-    };
-    analogousColors.push(rgbToHex(newRgb));
-  }
-  return analogousColors;
-}
-
 // Calculate triadic colors
 export function calculateTriadicColors(color: string): string[] {
   const rgb = hexToRgb(color);

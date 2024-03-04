@@ -1,4 +1,5 @@
 import "./App.css";
+import { AnalogousColors } from "./components/AnalogousColors";
 import { ColorInput } from "./components/ColorInput/components/ColorInput";
 import { ColorRepresentation } from "./components/ColorRepresentation/components/ColorRepresentation";
 import { useColorScheme } from "./components/ColorScheme/hooks/useColorScheme";
@@ -33,6 +34,9 @@ function App() {
         <ComplementaryColor />
         <div>
           <SplitComplementaryColors />
+        </div>
+        <div>
+          <AnalogousColors />
         </div>
       </div>
     </>
