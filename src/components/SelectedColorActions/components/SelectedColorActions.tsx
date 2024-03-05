@@ -1,7 +1,8 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store/hooks";
-import { ColorWheelIcon, CopyIcon } from "@radix-ui/react-icons";
+import { ColorWheelIcon } from "@radix-ui/react-icons";
+import { CopyColors } from "./CopyColors";
 
 export const SelectedColorActions = () => {
   const selectedColors = useAppSelector((state) => state.color.selectedColors);
@@ -20,9 +21,7 @@ export const SelectedColorActions = () => {
             {selectedColorsLength > 1 ? "s" : ""}
           </AlertTitle>
           <AlertDescription className="mt-4 flex items-center gap-2 justify-center">
-            <Button variant="secondary">
-              <CopyIcon className="mr-2" /> Copy colors
-            </Button>
+            <CopyColors />
             <Button variant="destructive" disabled={selectedColorsLength <= 2}>
               <ColorWheelIcon className="mr-2" /> Make a palette
             </Button>

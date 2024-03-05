@@ -14,8 +14,6 @@ export function colorToHSLA(color: string): string | null {
   // Get the computed style of the dummy element
   const computedColor = window.getComputedStyle(dummyElement).color;
 
-  console.log(computedColor);
-
   // Create a canvas element to get HSL values
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -49,8 +47,6 @@ export function colorToHSLA(color: string): string | null {
   const hslaString = `hsla(${hslValues[0]}, ${hslValues[1]}%, ${
     hslValues[2]
   }%, ${alpha * 100})`;
-
-  document.body.style.backgroundColor = hslaString;
 
   return hslaString;
 }

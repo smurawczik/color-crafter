@@ -3,7 +3,7 @@ import { ThemeSliceState } from "./theme.slice.types";
 
 // Define the initial state using that type
 const initialState: ThemeSliceState = {
-  type: "dark",
+  type: "light",
 };
 
 export const themeSlice = createSlice({
