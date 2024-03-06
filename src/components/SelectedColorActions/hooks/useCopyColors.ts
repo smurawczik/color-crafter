@@ -4,7 +4,7 @@ import { getColorType } from "@/helpers/get.color.type";
 import { useAppSelector } from "@/store/hooks";
 import { useState } from "react";
 
-export type CopyType = "json" | "hex" | "hsl";
+export type CopyType = "json" | "hex" | "hsl" | "mui";
 
 export const useCopyColors = () => {
   const [copied, setCopied] = useState(false);
@@ -41,6 +41,20 @@ export const useCopyColors = () => {
       );
     } else if (copyType === "hsl") {
       copyText(selectedColors.map(colorToHSLA).join(", "));
+    } else if (copyType === "mui") {
+      const hexColors = selectedColors.map((color) => {
+        const colorType = getColorType(color);
+        return transformToHex(color, colorType);
+      });
+      copyText(
+        `const theme = createTheme({
+  palette: {
+    primary: "${hexColors[0]}",
+    secondary: "${hexColors[1]}",
+  },
+});
+`
+      );
     }
   };
 

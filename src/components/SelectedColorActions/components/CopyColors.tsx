@@ -12,8 +12,10 @@ import {
 } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { CopyButton } from "./CopyButton";
+import { useAppSelector } from "@/store/hooks";
 
 export const CopyColors = () => {
+  const selectedColors = useAppSelector((state) => state.color.selectedColors);
   const [open, setOpen] = useState(false);
 
   return (
@@ -38,6 +40,11 @@ export const CopyColors = () => {
         <CopyButton copyType="json">
           JSON <CodeIcon className="ml-2" />
         </CopyButton>
+        {selectedColors.length === 2 ? (
+          <CopyButton copyType="mui">
+            MUI Theme <CodeIcon className="ml-2" />
+          </CopyButton>
+        ) : null}
       </PopoverContent>
     </Popover>
   );
