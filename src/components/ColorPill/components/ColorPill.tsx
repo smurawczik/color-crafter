@@ -3,6 +3,7 @@ import { getColorType } from "@/helpers/get.color.type";
 import { shouldUseWhiteText } from "@/helpers/text.contrast";
 import { toggleSelectedColor } from "@/store/color/color.slice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { withColorTools } from "../hoc/withColorTools";
 
 export const ColorPill = ({
   color,
@@ -51,3 +52,5 @@ export const ColorPill = ({
     </div>
   );
 };
+
+export const ColorPillWithTools = withColorTools(ColorPill);

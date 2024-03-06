@@ -56,31 +56,3 @@ export function generateColorPalette(
 
   return palette;
 }
-
-// Generate a scale of colors between two given colors
-export function generateColorScale(
-  startColor: string,
-  endColor: string,
-  numberOfSteps: number
-): string[] {
-  const startRgb = hexToRgb(startColor);
-  const endRgb = hexToRgb(endColor);
-
-  if (!startRgb || !endRgb) {
-    throw new Error("Invalid color format");
-  }
-
-  const scale = [];
-
-  for (let i = 0; i <= numberOfSteps; i++) {
-    const ratio = i / numberOfSteps;
-    const newRgb = {
-      r: Math.round(startRgb.r + (endRgb.r - startRgb.r) * ratio),
-      g: Math.round(startRgb.g + (endRgb.g - startRgb.g) * ratio),
-      b: Math.round(startRgb.b + (endRgb.b - startRgb.b) * ratio),
-    };
-    scale.push(rgbToHex(newRgb));
-  }
-
-  return scale;
-}

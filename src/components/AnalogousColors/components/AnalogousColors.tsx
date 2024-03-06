@@ -1,4 +1,4 @@
-import { ColorPill } from "@/components/ColorPill";
+import { ColorPillWithTools } from "@/components/ColorPill/components/ColorPill";
 import { Small } from "@/components/ui/small";
 import { calculateAnalogousColors } from "@/helpers/calculate.analogous.colors";
 import { isValidColor } from "@/helpers/is.valid.color";
@@ -18,9 +18,9 @@ export const AnalogousColors = () => {
       {analogousColors.map((color, index) => {
         return (
           <div className="group mb-2" key={index}>
-            <ColorPill color={color} selectable>
+            <ColorPillWithTools color={color} selectable>
               <Small>Analogous</Small>
-            </ColorPill>
+            </ColorPillWithTools>
           </div>
         );
       })}
