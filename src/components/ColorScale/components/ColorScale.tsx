@@ -24,7 +24,7 @@ export const ColorScale = () => {
                   index === 0 && "hover:translate-x-1"
                 } ${
                   index === colorScale.length - 1 && "hover:-translate-x-1"
-                } hover:shadow-xl transition-transform cursor-pointer`}
+                } hover:shadow-lg dark:hover:shadow-gray-700 transition-transform cursor-pointer`}
                 style={{
                   backgroundColor: color,
                 }}

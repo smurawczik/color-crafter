@@ -28,7 +28,7 @@ function App() {
         </div>
       </div>
 
-      <div className="flex mx-auto max-w-fit gap-4 items-start">
+      <div className="flex mx-auto max-w-fit gap-8 items-start">
         <ComplementaryColor />
         <div>
           <SplitComplementaryColors />
