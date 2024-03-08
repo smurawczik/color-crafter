@@ -1,6 +1,7 @@
 import "./App.css";
 import { AnalogousColors } from "./components/AnalogousColors";
 import { ColorInput } from "./components/ColorInput/components/ColorInput";
+import { ColorScale } from "./components/ColorScale";
 import { useColorScheme } from "./components/ColorScheme/hooks/useColorScheme";
 import { ComplementaryColor } from "./components/ComplementaryColor/components/ComplementaryColor";
 import { SelectedColorActions } from "./components/SelectedColorActions";
@@ -38,6 +39,7 @@ function App() {
       </div>
 
       <SelectedColorActions />
+      <ColorScale />
     </>
   );
 }

@@ -5,6 +5,10 @@ import { ColorSliceState } from "./color.slice.types";
 const initialState: ColorSliceState = {
   input: "#95b738",
   selectedColors: [],
+  scale: {
+    from: undefined,
+    to: undefined,
+  },
 };
 
 export const colorSlice = createSlice({
@@ -27,10 +31,29 @@ export const colorSlice = createSlice({
     resetSelectedColors: (state) => {
       state.selectedColors = [];
     },
+    setScaleFrom: (state, action: PayloadAction<string>) => {
+      if (state.scale.from === action.payload) {
+        state.scale.from = undefined;
+      } else {
+        state.scale.from = action.payload;
+      }
+    },
+    setScaleTo: (state, action: PayloadAction<string>) => {
+      if (state.scale.to === action.payload) {
+        state.scale.to = undefined;
+      } else {
+        state.scale.to = action.payload;
+      }
+    },
   },
 });
 
-export const { setColorHex, toggleSelectedColor, resetSelectedColors } =
-  colorSlice.actions;
+export const {
+  setColorHex,
+  toggleSelectedColor,
+  resetSelectedColors,
+  setScaleFrom,
+  setScaleTo,
+} = colorSlice.actions;
 
 export default colorSlice.reducer;

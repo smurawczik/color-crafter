@@ -1,10 +1,12 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { useAppSelector } from "@/store/hooks";
-import { ColorWheelIcon } from "@radix-ui/react-icons";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { ColorWheelIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { CopyColors } from "./CopyColors";
+import { resetSelectedColors } from "@/store/color/color.slice";
 
 export const SelectedColorActions = () => {
+  const dispatch = useAppDispatch();
   const selectedColors = useAppSelector((state) => state.color.selectedColors);
   const selectedColorsLength = selectedColors.length;
 
@@ -13,7 +15,7 @@ export const SelectedColorActions = () => {
   }
 
   return (
-    <div className="absolute z-50 bottom-0 left-0 w-full">
+    <div className="absolute z-50 bottom-20 left-0 w-full">
       <div className="w-full py-4 px-20 text-center">
         <Alert>
           <AlertTitle>
@@ -26,6 +28,15 @@ export const SelectedColorActions = () => {
               <ColorWheelIcon className="mr-2" /> Make a palette
             </Button>
           </AlertDescription>
+          <div className="absolute right-2 top-2">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => dispatch(resetSelectedColors())}
+            >
+              <Cross1Icon />
+            </Button>
+          </div>
         </Alert>
       </div>
     </div>

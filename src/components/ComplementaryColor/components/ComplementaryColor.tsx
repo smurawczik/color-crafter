@@ -1,4 +1,4 @@
-import { ColorPill } from "@/components/ColorPill";
+import { ColorPillWithTools } from "@/components/ColorPill/components/ColorPill";
 import { Small } from "@/components/ui/small";
 import { calculateComplementaryColor } from "@/helpers/complementary.color";
 import { isValidColor } from "@/helpers/is.valid.color";
@@ -15,9 +15,9 @@ export const ComplementaryColor = () => {
 
   return (
     <div className="flex items-center mt-4 mb-2 group">
-      <ColorPill color={complementaryColor} selectable>
+      <ColorPillWithTools color={complementaryColor} selectable>
         <Small>Complementary</Small>
-      </ColorPill>
+      </ColorPillWithTools>
     </div>
   );
 };
