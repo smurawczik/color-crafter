@@ -13,9 +13,9 @@ export const ColorScale = () => {
   const colorScale = generateColorScale(scale.from, scale.to, 20);
 
   return (
-    <div className="absolute bottom-12 w-full z-50 left-0">
+    <div className="absolute bottom-10 w-full z-50 left-0">
       <div className="relative text-center max-w-4xl m-auto" ref={containerRef}>
-        <div className="flex">
+        <div className="flex gap-1">
           {colorScale.map((color, index) => {
             return (
               <div

@@ -16,7 +16,7 @@ export const SelectedColorActions = () => {
 
   return (
     <div className="absolute z-50 bottom-20 left-0 w-full">
-      <div className="w-full py-4 px-20 text-center">
+      <div className="w-full py-4 px-20 lg:px-52 text-center">
         <Alert>
           <AlertTitle>
             You have {selectedColorsLength} selected color
